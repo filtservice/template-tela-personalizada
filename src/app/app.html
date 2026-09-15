@@ -1,0 +1,18 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>Minha Tela Personalizada</strong>
+      <small>Tela personalizada</small>
+    </div>
+    <nav>
+      <a routerLink="/epis" routerLinkActive="ativo">Controle de EPIs</a>
+      <!-- acrescente uma linha por tela nova -->
+    </nav>
+    <footer>
+      Dados via API pública do FILT
+    </footer>
+  </aside>
+  <main class="conteudo">
+    <router-outlet />
+  </main>
+</div>

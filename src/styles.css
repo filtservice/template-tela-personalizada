@@ -1,0 +1,127 @@
+/* Tokens copiados do tema do FILT (nimitz packages/nimitz/src/_variables.scss) */
+:root {
+  --vs-primary: #8EC200;          /* $brand-300 */
+  --vs-primary-light: #9DD600;    /* $brand-200 (bg do botao solido) */
+  --vs-primary-lighter: #C4F206;  /* $brand-100 (pressed) */
+  --vs-green-dark: #45590E;       /* $brand-500 / $vs-green-89 */
+  --vs-bg-neutral-0: #FAFEFF;     /* $vs-gray-0 */
+  --vs-bg-neutral-1: #F4F8FB;     /* $vs-gray-50 */
+  --vs-bg-neutral-2: #E7EBEF;     /* $vs-gray-100 */
+  --vs-border-default: #E1E7EA;   /* $vs-gray-150 */
+  --vs-border-table: #DDDDDD;     /* $vs-gray-border-table */
+  --vs-content-primary: #1F272E;  /* $vs-gray-900 */
+  --vs-content-secondary: #475C6B;/* $vs-gray-500 */
+  --vs-red: #d64545;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--vs-content-primary);
+}
+
+h2 { margin-top: 0; color: var(--vs-content-primary); }
+
+.hint { color: var(--vs-content-secondary); font-size: 13px; }
+
+code {
+  background: var(--vs-bg-neutral-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+label {
+  display: block;
+  margin: 12px 0;
+  font-weight: 600;
+  max-width: 480px;
+}
+
+label.check { font-weight: 400; margin: 4px 0; }
+
+select, input[type="text"], input[type="number"], input[type="date"] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--vs-border-default);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--vs-content-primary);
+}
+
+select:focus, input:focus {
+  outline: none;
+  border-color: var(--vs-primary);
+  box-shadow: 0 0 0 2px rgba(142, 194, 0, 0.25);
+}
+
+fieldset {
+  max-width: 480px;
+  margin: 12px 0;
+  border: 1px solid var(--vs-border-default);
+  border-radius: 6px;
+}
+
+input[type="checkbox"] { accent-color: var(--vs-primary); }
+
+/* Botao solido do FILT: fundo verde-lima, texto escuro */
+button {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 6px;
+  background: var(--vs-primary-light);
+  color: var(--vs-content-primary);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+button:hover:not(:disabled) { background: var(--vs-primary); }
+button:active:not(:disabled) { background: var(--vs-primary-lighter); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+table {
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 14px;
+  min-width: 480px;
+}
+
+th, td {
+  border: 1px solid var(--vs-border-table);
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th { background: var(--vs-bg-neutral-2); color: var(--vs-content-primary); }
+
+tbody tr:hover { background: var(--vs-bg-neutral-1); }
+
+.erro {
+  background: #fdecec;
+  border: 1px solid #f3b6b6;
+  color: var(--vs-red);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 12px 0;
+  max-width: 640px;
+}
+
+pre {
+  background: #fff;
+  border: 1px solid var(--vs-border-default);
+  border-radius: 6px;
+  padding: 14px;
+  max-width: 640px;
+  overflow-x: auto;
+  font-size: 13px;
+}
