@@ -45,8 +45,17 @@ if (!destino || !chave) {
 const alvo = new URL(destino);
 const transporte = alvo.protocol === 'https:' ? https : http;
 
+/*
+ * No FILT_API_URL vai o endereco do ERP, o mesmo que voce usa no navegador. A API
+ * publica responde sob /api dentro dele (na raiz quem atende e o front do ERP, que
+ * devolveria HTML no lugar de JSON), entao o prefixo e acrescentado aqui. Se voce
+ * ja informar a URL com /api no fim, nao duplicamos.
+ */
+const base = alvo.pathname.replace(/\/$/, '');
+const prefixo = /\/api$/.test(base) ? base : base + '/api';
+
 http.createServer((req, res) => {
-  const caminho = alvo.pathname.replace(/\/$/, '') + req.url;
+  const caminho = prefixo + req.url;
 
   const cabecalhos = { ...req.headers };
   delete cabecalhos.origin;    // o 403 vazio do gateway vem daqui
