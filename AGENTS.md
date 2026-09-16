@@ -9,9 +9,15 @@ que faz a tela funcionar publicada e passar na revisão automática.
 
 ## 1. Descubra os campos antes de escrever qualquer tela
 
-Nunca deduza o nome de um campo a partir do rótulo. A chave é derivada do nome da
-coluna, e a tradução surpreende: o campo "Data de entrega" vira `dataDeEntregaU`,
-não `dataEntregaU`. Errar isso dá 400 e custa tempo.
+Nunca deduza o nome de um campo a partir do rótulo. A chave vem do **nome da coluna**,
+não do rótulo, e as duas coisas divergem com facilidade: um campo rotulado
+"Data entrega" tem chave `dataEntregaU` — quem lê o rótulo e escreve o natural
+`dataDeEntregaU` recebe `{"codigo":"VALIDACAO","mensagem":"Filtro desconhecido..."}`.
+Uma letra de diferença custa a requisição inteira.
+
+**O usuário não precisa te dizer os campos.** Peça só a chave de API e, se ele souber,
+o nome do cadastro — pode ser com ou sem o prefixo `U_`, em maiúsculas ou minúsculas,
+que a API normaliza. Se ele não souber o nome, liste os cadastros e mostre a ele.
 
 Consulte sempre, antes de montar form, grid ou filtro:
 

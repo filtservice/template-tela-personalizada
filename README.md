@@ -95,8 +95,12 @@ A resposta traz, para cada campo, a `chave` que vai no payload, o tipo, se é
 obrigatório, os limites de validação e — em campos de referência — o endpoint de
 lookup para o autocomplete.
 
-> **Use a `chave` como ela vem.** Ela é derivada do nome da coluna, não do rótulo:
-> o campo "Data de entrega" vira `dataDeEntregaU`. Deduzir dá 400.
+> **Use a `chave` como ela vem.** Ela vem do nome da coluna, não do rótulo — e os dois
+> divergem: um campo rotulado "Data entrega" tem chave `dataEntregaU`; escrever o
+> natural `dataDeEntregaU` dá erro de validação.
+
+Você só precisa saber o **nome do cadastro** — e pode informá-lo com ou sem o prefixo
+`U_`, em maiúsculas ou minúsculas. Se não lembrar, a chamada do item 2 lista todos.
 
 O contrato completo dos endpoints está no Swagger do ERP, em `/swagger-ui`.
 
