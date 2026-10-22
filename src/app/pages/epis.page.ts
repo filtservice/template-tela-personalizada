@@ -318,9 +318,10 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
   styles: [`
     /* ---------- card e header da listagem (padrão FILT) ---------- */
     .card-filt {
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       border: 1px solid var(--vs-border-default);
       border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(31, 39, 46, 0.08);
       overflow: hidden;
     }
     /* o card da grid precisa de overflow hidden (cantos do rodape); o do formulario
@@ -342,18 +343,18 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       border: none;
       border-radius: 6px;
       background: var(--vs-primary-light);
-      color: var(--vs-content-primary);
+      color: var(--vs-btn-solid-texto);
       font-weight: 600;
       font-family: inherit;
       cursor: pointer;
     }
-    .btn-primario:hover:not(:disabled) { background: var(--vs-primary); }
+    .btn-primario:hover:not(:disabled) { background: var(--vs-primary); color: var(--vs-btn-solid-texto); }
     .btn-primario:disabled { opacity: 0.5; cursor: default; }
     .btn-secundario {
       padding: 8px 16px;
-      border: 1px solid var(--vs-border-default);
+      border: 1px solid var(--vs-border-input);
       border-radius: 6px;
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       color: var(--vs-content-primary);
       font-family: inherit;
       cursor: pointer;
@@ -374,9 +375,9 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--vs-border-default);
+      border: 1px solid var(--vs-border-input);
       border-radius: 6px;
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       cursor: pointer;
       color: var(--vs-content-secondary);
 
@@ -385,7 +386,7 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
     .btn-icone:hover {
       background: var(--vs-primary-light);
       border-color: var(--vs-primary-light);
-      color: var(--vs-content-primary);
+      color: var(--vs-btn-solid-texto);
     }
 
     /* ---------- drawer de filtros (padrão FILT: painel lateral direito) ---------- */
@@ -397,7 +398,7 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
     .drawer {
       position: fixed; top: 0; right: 0; bottom: 0;
       width: 420px; max-width: 90vw;
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       z-index: 45;
       box-shadow: -6px 0 24px rgba(0, 0, 0, 0.18);
       display: flex; flex-direction: column;
@@ -446,8 +447,8 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       padding: 12px 18px;
       font-size: 13.5px;
     }
-    .grid-filt tbody tr:nth-child(even) { background: var(--vs-bg-neutral-1); }
-    .grid-filt tbody tr:hover { background: var(--vs-bg-neutral-2); cursor: pointer; }
+    .grid-filt tbody tr:nth-child(even) { background: var(--vs-bg-neutral-2); }
+    .grid-filt tbody tr:hover { background: var(--vs-grid-hover); cursor: pointer; }
     .grid-filt tbody td { border-bottom: none; }
     .sort-icone { color: var(--vs-content-secondary); font-size: 11px; margin-left: 2px; }
     .col-id { width: 110px; }
@@ -489,15 +490,16 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       margin: 0 0 0 6px;
       padding: 2px 6px;
       font-size: 13px;
-      border: 1px solid var(--vs-border-default);
+      border: 1px solid var(--vs-border-input);
       border-radius: 4px;
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
     }
     .pagina-atual {
       padding: 2px 12px;
       background: var(--vs-primary-light);
       font-weight: 700;
       border-radius: 4px;
+      color: var(--vs-btn-solid-texto);
     }
 
     /* ---------- formulário (padrão header-form) ---------- */
@@ -515,9 +517,9 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--vs-border-default);
+      border: 1px solid var(--vs-border-input);
       border-radius: 8px;
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       cursor: pointer;
       color: var(--vs-content-primary);
 
@@ -533,7 +535,7 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
     }
     .secao-titulo {
       padding: 14px 18px;
-      border-bottom: 1px solid var(--vs-border-default);
+      border-bottom: 1px solid var(--vs-border-separador);
       font-weight: 700;
       font-size: 15px;
     }
@@ -555,13 +557,13 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       width: 100%;
       max-height: 220px;
       overflow-y: auto;
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       border: 1px solid var(--vs-border-default);
       border-radius: 6px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
     .lookup-opcoes li { padding: 8px 12px; cursor: pointer; font-size: 14px; }
-    .lookup-opcoes li:hover { background: var(--vs-bg-neutral-1); }
+    .lookup-opcoes li:hover { background: var(--vs-bg-neutral-2); }
     .autocomplete {
       display: flex;
       align-items: stretch;
@@ -584,8 +586,8 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
 
       svg { width: 12px; height: 12px; flex-shrink: 0; }
     }
-    .autocomplete-botao:hover { background: var(--vs-primary-light); color: var(--vs-content-primary); border-color: var(--vs-primary-light); }
-    .desabilitado input { background: var(--vs-bg-neutral-1); color: var(--vs-content-secondary); }
+    .autocomplete-botao:hover { background: var(--vs-primary-light); color: var(--vs-btn-solid-texto); border-color: var(--vs-primary-light); }
+    .desabilitado input { background: var(--vs-input-desabilitado); color: var(--vs-content-secondary); }
 
     /* ---------- seção de itens (grade filha, padrão FILT) ---------- */
     .card-itens { margin-top: 16px; }
@@ -609,7 +611,7 @@ const TAMANHOS_PAGINA = [15, 30, 50, 100];
       z-index: 50;
     }
     .modal {
-      background: #fff;
+      background: var(--vs-bg-neutral-1);
       border-radius: 8px;
       padding: 20px 24px;
       max-width: 420px;

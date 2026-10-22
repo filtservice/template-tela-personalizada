@@ -143,6 +143,11 @@ lista completa e o raciocínio estão no `AGENTS.md`.
 
 ## Coisas que valem saber
 
+- **A tela acompanha o tema claro/escuro do ERP sozinha.** O ERP avisa a tela quando
+  ela abre e a cada troca de tema; fora do ERP, vale o tema do sistema operacional.
+  Para isso funcionar, use sempre os tokens de cor `--vs-*` de `src/styles.css`, nunca
+  uma cor escrita à mão (ver `AGENTS.md` §4).
+
 - **A tela só abre por dentro do ERP.** Acessar a URL publicada direto no navegador
   devolve 401 — o acesso depende da sua sessão no ERP.
 - **As rotas usam hash** (`#/epis`) porque o app é publicado num caminho versionado

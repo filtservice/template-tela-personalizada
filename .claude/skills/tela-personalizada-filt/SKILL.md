@@ -76,7 +76,9 @@ os limites viram `maxlength`/`min`/`max`, `somenteLeitura` não vai no payload, 
 `REFERENCIA` usa autocomplete contra o `lookup` do próprio contrato.
 
 Siga o padrão visual do template (card, grid com zebra, drawer de filtros, header de
-formulário) — é o que faz a tela parecer parte do ERP sem ninguém pedir.
+formulário) — é o que faz a tela parecer parte do ERP sem ninguém pedir. Cores só pelos
+tokens `--vs-*` de `src/styles.css`: a tela segue o tema claro/escuro do ERP, e cor
+escrita à mão quebra o modo escuro.
 
 ## Passo 4 — Confira o que a revisão automática reprova
 

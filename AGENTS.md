@@ -97,6 +97,14 @@ A tela abre dentro do ERP e deve parecer parte dele. As classes do FILT já est�
 novo, e siga a estrutura da tela de exemplo: listagem com header (Novo + filtro),
 grid com coluna de Ações e paginação; formulário com voltar, título com o id e Salvar.
 
+**Cores só por token, nunca fixas.** A tela segue sozinha o tema claro/escuro do ERP:
+o ERP avisa por `postMessage` (`{tipo: 'filt:tema', escuro}`), `src/app/tema.ts` liga
+`data-tema="escuro"` no `<html>` e `src/styles.css` troca os valores dos tokens `--vs-*`.
+Por isso escreva `background: var(--vs-bg-neutral-1)`, `color: var(--vs-content-primary)`,
+`border: 1px solid var(--vs-border-input)` — um `#fff` ou `#333` escrito à mão fica
+errado no modo escuro. O fundo das telas é `--vs-bg-neutral-1`, o mesmo do ERP. Não
+mexa no `tema.ts` para ler o ERP: a tela não pode acessar a janela pai (§3).
+
 ## 5. Regras do ambiente
 
 - **Rotas com hash** (`#/minha-tela`): o app é publicado em

@@ -12,12 +12,42 @@
   --vs-content-primary: #1F272E;  /* $vs-gray-900 */
   --vs-content-secondary: #475C6B;/* $vs-gray-500 */
   --vs-red: #d64545;
+  --vs-border-input: #C7D5DB;     /* $vs-gray-200: borda de input e botão (medida no ERP) */
+  --vs-border-separador: #D7DADC; /* linha sob o título do card (medida no ERP) */
+  --vs-grid-hover: #DCE1E6;       /* hover de linha da grade */
+  --vs-input-desabilitado: #E1E7EA; /* $vs-gray-150 */
+  --vs-btn-solid-texto: #1F272E;  /* texto sobre o verde: escuro nos dois temas, como no ERP */
+  --vs-erro-bg: #FDECEC;
+  --vs-erro-borda: #F3B6B6;
+  --vs-erro-texto: #D64545;
+  color-scheme: light;
 }
+/* Tema escuro: mesmos tokens com os valores do .dark-theme do ERP (nimitz styles.scss).
+   O atributo é ligado por src/app/tema.ts, a partir da mensagem 'filt:tema' do ERP. */
+:root[data-tema="escuro"] {
+  color-scheme: dark;
+  --vs-bg-neutral-0: #121619;     /* $vs-gray-1000 */
+  --vs-bg-neutral-1: #181E23;     /* $vs-gray-950: fundo das telas */
+  --vs-bg-neutral-2: #1F272E;     /* $vs-gray-900 */
+  --vs-border-default: #29343D;   /* $vs-gray-800 */
+  --vs-border-table: #29343D;
+  --vs-border-input: #29343D;
+  --vs-border-separador: #29343D;
+  --vs-content-primary: #E7EBEF;  /* $vs-gray-100 */
+  --vs-content-secondary: #607C90;/* $vs-gray-400 */
+  --vs-grid-hover: #3D4E5C;       /* $vs-gray-600 (--vs-grid-hover do ERP escuro) */
+  --vs-input-desabilitado: #252F37; /* $vs-gray-850 */
+  --vs-erro-bg: #3A1F1F;
+  --vs-erro-borda: #7A2E2E;
+  --vs-erro-texto: #F28B8B;
+}
+
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
+  background: var(--vs-bg-neutral-1);   /* igual ao ERP: a tela abre dentro dele */
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color: var(--vs-content-primary);
 }
@@ -47,11 +77,11 @@ select, input[type="text"], input[type="number"], input[type="date"] {
   width: 100%;
   margin-top: 4px;
   padding: 8px 10px;
-  border: 1px solid var(--vs-border-default);
+  border: 1px solid var(--vs-border-input);
   border-radius: 6px;
   font-size: 14px;
   font-family: inherit;
-  background: #fff;
+  background: var(--vs-bg-neutral-1);
   color: var(--vs-content-primary);
 }
 
@@ -76,7 +106,7 @@ button {
   border: none;
   border-radius: 6px;
   background: var(--vs-primary-light);
-  color: var(--vs-content-primary);
+  color: var(--vs-btn-solid-texto);
   font-size: 14px;
   font-weight: 600;
   font-family: inherit;
@@ -84,13 +114,13 @@ button {
   transition: background-color 200ms;
 }
 
-button:hover:not(:disabled) { background: var(--vs-primary); }
+button:hover:not(:disabled) { background: var(--vs-primary); color: var(--vs-btn-solid-texto); }
 button:active:not(:disabled) { background: var(--vs-primary-lighter); }
 button:disabled { opacity: 0.5; cursor: default; }
 
 table {
   border-collapse: collapse;
-  background: #fff;
+  background: var(--vs-bg-neutral-1);
   margin-top: 14px;
   min-width: 480px;
 }
@@ -104,12 +134,12 @@ th, td {
 
 th { background: var(--vs-bg-neutral-2); color: var(--vs-content-primary); }
 
-tbody tr:hover { background: var(--vs-bg-neutral-1); }
+tbody tr:hover { background: var(--vs-grid-hover); }
 
 .erro {
-  background: #fdecec;
-  border: 1px solid #f3b6b6;
-  color: var(--vs-red);
+  background: var(--vs-erro-bg);
+  border: 1px solid var(--vs-erro-borda);
+  color: var(--vs-erro-texto);
   padding: 10px 14px;
   border-radius: 6px;
   margin: 12px 0;
@@ -117,7 +147,7 @@ tbody tr:hover { background: var(--vs-bg-neutral-1); }
 }
 
 pre {
-  background: #fff;
+  background: var(--vs-bg-neutral-1);
   border: 1px solid var(--vs-border-default);
   border-radius: 6px;
   padding: 14px;

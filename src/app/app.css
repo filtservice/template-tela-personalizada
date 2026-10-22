@@ -62,5 +62,5 @@
 .conteudo {
   flex: 1;
   padding: 24px 32px;
-  background: var(--vs-bg-neutral-0);
+  background: var(--vs-bg-neutral-1);   /* fundo das telas do ERP ($vs-gray-50) */
 }
