@@ -49,35 +49,50 @@ export class ErpApi {
     return this.token;
   }
 
+  /**
+   * Executa a chamada com o token e, se ela voltar 401, renova o token e repete UMA vez.
+   * O oauth reaproveita o token enquanto ele vale e devolve em `expires_in` o tempo que
+   * RESTA — um token emitido com poucos segundos de vida pode vencer entre a emissão e a
+   * chamada (ex.: no meio de um salvar que faz várias em sequência). A requisição recusada
+   * com 401 não foi processada pela API, então repetir é seguro mesmo em POST/PATCH/DELETE.
+   */
+  private async comToken<T>(chamar: (token: string) => Promise<T>): Promise<T> {
+    try {
+      return await chamar(await this.obterToken());
+    } catch (e) {
+      if (!(e instanceof HttpErrorResponse) || e.status !== 401) {
+        throw e;
+      }
+      this.token = null;
+      return chamar(await this.obterToken());
+    }
+  }
+
   /** path sem a barra inicial e sem /public/v1 — ex.: 'personalizados/CONTROLE_DE_EPIS' */
   async get<T>(path: string, params?: Record<string, string>): Promise<T> {
-    const token = await this.obterToken();
-    return firstValueFrom(this.http.get<T>(`${BASE_API}/public/v1/${path}`, {
+    return this.comToken(token => firstValueFrom(this.http.get<T>(`${BASE_API}/public/v1/${path}`, {
       headers: { Authorization: `Bearer ${token}` },
       params,
-    }));
+    })));
   }
 
   async post<T>(path: string, body: unknown): Promise<T> {
-    const token = await this.obterToken();
-    return firstValueFrom(this.http.post<T>(`${BASE_API}/public/v1/${path}`, body, {
+    return this.comToken(token => firstValueFrom(this.http.post<T>(`${BASE_API}/public/v1/${path}`, body, {
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    }));
+    })));
   }
 
   /** PATCH é JSON Merge Patch: mande só o que muda — ausente preserva, null limpa. */
   async patch<T>(path: string, body: unknown): Promise<T> {
-    const token = await this.obterToken();
-    return firstValueFrom(this.http.patch<T>(`${BASE_API}/public/v1/${path}`, body, {
+    return this.comToken(token => firstValueFrom(this.http.patch<T>(`${BASE_API}/public/v1/${path}`, body, {
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    }));
+    })));
   }
 
   async delete(path: string): Promise<void> {
-    const token = await this.obterToken();
-    await firstValueFrom(this.http.delete<void>(`${BASE_API}/public/v1/${path}`, {
+    await this.comToken(token => firstValueFrom(this.http.delete<void>(`${BASE_API}/public/v1/${path}`, {
       headers: { Authorization: `Bearer ${token}` },
-    }));
+    })));
   }
 
   /**
